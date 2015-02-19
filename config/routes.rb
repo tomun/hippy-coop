@@ -5,7 +5,12 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   #root 'welcome#index'
 
+  root 'members#index'
+
   resources :members do
+  end
+
+  resources :rooms do
   end
 
   # Example of regular route:
