@@ -1,9 +1,54 @@
+<%= render :partial => 'shared/header' %>
+
 <p id="notice"><%= notice %></p>
 
 <p>
   <strong>Name:</strong>
   <%= @member.name %>
 </p>
+
+<p>
+  <strong>Room:</strong>
+  <%= @member.room_name %>
+</p>
+
+<p>
+  <strong>Room Rent:</strong>
+  <%= @member.room_rent %>
+</p>
+
+<p>
+  <strong>Purchases:<strong>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Amount</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @member.purchases.sort {|a,b| b.description <=> a.description }.each do |purchase| %>
+      <tr>
+        <td><%= link_to purchase.description, member_purchase_path(purchase.member, purchase) %></td>
+        <td><%= purchase.amount %></td>
+        <td><%= link_to 'Delete', member_purchase_path(purchase.member, purchase), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p>
+  <strong>Rent after purchases:</strong>
+  <%= @member.rent_after_purchases %>
+</p>
+
+<br/>
+
+<%= link_to "New Purchase", new_member_purchase_path(@member) %> | 
 
 <%= link_to 'Edit', edit_member_path(@member) %> |
 <%= link_to 'Back', members_path %>

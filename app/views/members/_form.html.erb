@@ -12,9 +12,16 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.label :name %><br/>
+    <%= f.text_field :name %><br/>
+
+    <%= f.label :room_id %><br/>
+    <%= f.number_field :room_id %>
   </div>
+
+  <% @rooms.each do |room| %>
+    <p>Room <%= room.id %> = <%= room.name %></p>
+  <% end %>
 
   <div class="actions">
     <%= f.submit %>

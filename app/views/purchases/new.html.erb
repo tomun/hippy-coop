@@ -1,0 +1,7 @@
+<%= render :partial => 'shared/header' %>
+
+<h1>New Purchase</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Back', member_purchases_path(@purchase.member) %>

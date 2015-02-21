@@ -34,6 +34,11 @@ class MembersController < ApplicationController
 	# PATCH/PUT /members/1
 	def update
 		respond_to do |format|
+			room = Room.find(member_params[:room_id])
+			if room
+				room.member = @member
+				room.save
+			end
 			if @member.update(member_params)
 				format.html { redirect_to members_path, notice: 'Member was successfully updated.' }
 			else
@@ -44,7 +49,7 @@ class MembersController < ApplicationController
 
 	# DELETE /members/1
 	def destroy
-	@member.destroy
+		@member.destroy
 		respond_to do |format|
 			format.html { redirect_to members_url, notice: 'Member was successfully destroyed.' }
 		end
@@ -57,6 +62,7 @@ private
 		if id != nil 
 			@member = Member.find(id)
 		end
+		@rooms = Room.all
 	end
 
 	# Never trust parameters from the scary internet, only allow the white list through.

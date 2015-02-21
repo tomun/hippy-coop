@@ -8,11 +8,13 @@ Rails.application.routes.draw do
   root 'members#index'
 
   resources :members do
+    resources :purchases do
+    end
   end
 
   resources :rooms do
   end
-
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

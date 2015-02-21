@@ -44,7 +44,7 @@ class RoomsController < ApplicationController
 
 	# DELETE /rooms/1
 	def destroy
-	@room.destroy
+		@room.destroy
 		respond_to do |format|
 			format.html { redirect_to rooms_url, notice: 'Room was successfully destroyed.' }
 		end
